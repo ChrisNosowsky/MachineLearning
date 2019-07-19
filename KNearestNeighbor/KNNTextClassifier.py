@@ -22,7 +22,7 @@ class KNearestNeighbor:
         self.k = k
         self.distance_type = distance_type
         
-    #Assigning training data to class variables 
+    #Assigning training data to class variables
     def train(self, train1, train2):
         self.train1 = train1
         self.train2 = train2
@@ -32,7 +32,7 @@ class KNearestNeighbor:
         self.test = test
         prediction = []
         
-        for i in range(len(test)):
+        for i, value in enumerate(test):
             max_similar = 0
             max_index = 0
             for j in range(self.train1.shape[0]):
@@ -44,7 +44,8 @@ class KNearestNeighbor:
         return prediction
     
     #POS tag conversion from nltk to wordnet.synsets
-    def convert_tag(self, tag):
+    @staticmethod
+    def convert_tag(tag):
         tag_dict = {'N':'n', 'J': 'a', 'R':'r', 'V':'v'}
         try:
             return tag_dict[tag[0]]
@@ -73,7 +74,8 @@ class KNearestNeighbor:
           return (self.similarity(synsets1, synsets2) + self.similarity(synsets2, synsets1)) / 2
       
     #Gets the similarity score between two synsets(instances of data)
-    def similarity(self, s1, s2, distance_type = 'path'):
+    @staticmethod
+    def similarity(s1, s2, distance_type = 'path'):
         s1_largest_scores = []
         
         for s1_synset in enumerate(s1, 0):
@@ -91,4 +93,3 @@ class KNearestNeighbor:
                 s1_largest_scores.append(max_score)
         mean_score = np.mean(s1_largest_scores)
         return mean_score
-    
