@@ -78,7 +78,7 @@ class KNearestNeighbor:
     def similarity(s1, s2, distance_type = 'path'):
         s1_largest_scores = []
         
-        for s1_synset in enumerate(s1, 0):
+        for i, s1_synset in enumerate(s1, 0):
             max_score = 0
             for s2_synset in s2:
                 if distance_type == 'path':
@@ -87,8 +87,7 @@ class KNearestNeighbor:
                     score = s1_synset.wup_similarity(s2_synset)
                 if score != None:
                     if score > max_score:
-                        max_score = score
-                        
+                        max_score = score                      
             if max_score != 0:
                 s1_largest_scores.append(max_score)
         mean_score = np.mean(s1_largest_scores)
