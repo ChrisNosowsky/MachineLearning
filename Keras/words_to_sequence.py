@@ -15,8 +15,8 @@ for note in rcn.notes:
         note_cat_int = 1
     elif note[2] == 'WC':
         note_cat_int = 2
-    labels.append(note_cat_int)        
-    
+    labels.append(note_cat_int)
+
 tokenizer = Tokenizer(num_words=20000)
 tokenizer.fit_on_texts(docs)
 sequences = tokenizer.texts_to_sequences(docs)
@@ -29,7 +29,7 @@ sequences = tokenizer.texts_to_sequences(docs)
 one_hot_results = tokenizer.texts_to_matrix(docs, mode='binary')
 #tokenizer_labels = Tokenizer(num_words=4)
 #tokenizer_labels.fit_on_texts(labels)
-#sequences_labels = tokenizer_labels.texts_to_sequences(labels)  
+#sequences_labels = tokenizer_labels.texts_to_sequences(labels)
 one_hot_labels = to_categorical(labels,3)
 #word_index = tokenizer.word_index
 #print('Found %s unique tokens.' % len(word_index))
