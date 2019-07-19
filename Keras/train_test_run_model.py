@@ -1,5 +1,4 @@
 import words_to_sequence as wts
-import read_clean_notes  as rcn
 import neural_network_model as nnm
 #Build training and test sets, set aside 10000 points to validate
 x_val = wts.one_hot_results[:10000]
