@@ -71,12 +71,11 @@ class KNearestNeighbor:
           synsets1 = self.doc_to_synsets(doc1)
           synsets2 = self.doc_to_synsets(doc2)
           
-          return (self.similarity(synsets1, synsets2) + self.similarity(synsets2, synsets1)) / 2
-      
+          return (self.similarity(synsets1, synsets2) + self.similarity(synsets2, synsets1)) / 2  
     #Gets the similarity score between two synsets(instances of data)
     @staticmethod
     def similarity(s1, s2, distance_type = 'path'):
-        s1_largest_scores = []    
+        s1_largest_scores = []
         for i, s1_synset in enumerate(s1, 0):
             max_score = 0
             for s2_synset in s2:
