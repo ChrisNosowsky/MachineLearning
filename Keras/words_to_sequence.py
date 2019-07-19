@@ -1,7 +1,5 @@
-import numpy as np
 from keras.preprocessing.text import Tokenizer
 from keras.utils.np_utils import to_categorical
-from keras.preprocessing.text import hashing_trick
 
 import read_clean_notes as rcn
 docs = []
