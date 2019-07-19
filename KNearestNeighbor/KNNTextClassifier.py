@@ -21,7 +21,7 @@ class KNearestNeighbor:
     def __init__(self, k=1, distance_type = 'path'):
         self.k = k
         self.distance_type = distance_type
-        
+
     #Assigning training data to class variables
     def train(self, train1, train2):
         self.train1 = train1
@@ -31,7 +31,7 @@ class KNearestNeighbor:
     def getPrediction(self, test):
         self.test = test
         prediction = []
-        
+
         for i, value in enumerate(test):
             max_similar = 0
             max_index = 0
@@ -42,7 +42,7 @@ class KNearestNeighbor:
                     max_index = j
             prediction.append(self.train2[max_index])
         return prediction
-    
+
     #POS tag conversion from nltk to wordnet.synsets
     @staticmethod
     def convert_tag(tag):
@@ -51,27 +51,27 @@ class KNearestNeighbor:
             return tag_dict[tag[0]]
         except KeyError:
             return None
-        
+
     #This is the function that returns the synsets and converts the documents.
     def doc_to_synsets(self, doc):
         tokens = word_tokenize(doc+' ')
         l=[]
         tags = nltk.pos_tag([tokens[0] + ' ']) if len(tokens) == 1 else nltk.pos_tag(tokens)
-        
+
         for token, tag in zip(tokens, tags):
             syntag = self.convert_tag(tag[1])
             syns = wn.synsets(token, syntag)
             if (len(syns) > 0):
                 l.append(syns[0])
         return l
-    
+
     #Gets document similarity number. 0 means low similarity and 1 means high similarity
     def document_similarity(self,doc1, doc2):
 
           synsets1 = self.doc_to_synsets(doc1)
           synsets2 = self.doc_to_synsets(doc2)
-          
-          return (self.similarity(synsets1, synsets2) + self.similarity(synsets2, synsets1)) / 2  
+
+          return (self.similarity(synsets1, synsets2) + self.similarity(synsets2, synsets1)) / 2
     #Gets the similarity score between two synsets(instances of data)
     @staticmethod
     def similarity(s1, s2, distance_type = 'path'):
