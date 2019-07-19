@@ -41,7 +41,7 @@ def main():
     y_train = dataset['output']
     classifier = KNearestNeighbor(k=1, distance_type='path')
     classifier.train(X_train, y_train)
-    
+
     final_test_list = ['will it rain', 'Is it hot outside?' , 'What is the expected high for today?',
                        'Will it be foggy tomorrow?', 'Should I prepare for sleet?',
                          'Will there be a storm today?', 'do we need to take umbrella today',
