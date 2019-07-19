@@ -27,7 +27,6 @@ def main():
     dataset.rename(columns = {0:'text', 1:'answer'}, inplace = True)
     
     dataset['output'] = np.where(dataset['answer'] == 'temperature', 1,0)
-    Num_Words = dataset.shape[0]
     
     print(dataset.head())
     print("\nSize of input file is ", dataset.shape)
