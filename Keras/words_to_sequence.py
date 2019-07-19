@@ -4,8 +4,7 @@ from keras.utils.np_utils import to_categorical
 import read_clean_notes as rcn
 docs = []
 for note in rcn.notes:
-    docs.append(note[1])
-    
+    docs.append(note[1]) 
 labels = []
 for note in rcn.notes:
     note_cat_int = 100
