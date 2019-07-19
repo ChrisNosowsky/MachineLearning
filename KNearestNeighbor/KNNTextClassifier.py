@@ -76,7 +76,7 @@ class KNearestNeighbor:
     def similarity(self, s1, s2, distance_type = 'path'):
         s1_largest_scores = []
         
-        for i, s1_synset in enumerate(s1, 0):
+        for s1_synset in enumerate(s1, 0):
             max_score = 0
             for s2_synset in s2:
                 if distance_type == 'path':
