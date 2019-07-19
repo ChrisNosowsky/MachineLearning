@@ -20,7 +20,7 @@ s.extend(['today', 'tomorrow', 'outside', 'out', 'there'])
 import numpy as np
 
 def main():
-    FILENAME = "https://raw.githubusercontent.com/watson-developer-cloud/natural-language-classifier-nodejs/master/training/weather_data_train.csv"   
+    FILENAME = "https://raw.githubusercontent.com/watson-developer-cloud/natural-language-classifier-nodejs/master/training/weather_data_train.csv"
     dataset = pd.read_csv(FILENAME, header = None)
     dataset.rename(columns = {0:'text', 1:'answer'}, inplace = True)
     dataset['output'] = np.where(dataset['answer'] == 'temperature', 1,0)
@@ -52,13 +52,12 @@ def main():
         review = re.sub('[^a-zA-Z]', ' ', final_test_list[i])
         review = review.lower()
         review = review.split()
-    
         review = [ps.lemmatize(word) for word in review if not word in s]
         review = ' '.join(review)
         test_corpus.append(review)
     y_pred_final = classifier.getPrediction(test_corpus)
     output_df = pd.DataFrame(data = {'text': final_test_list, 'code': y_pred_final})
     output_df['answer'] = np.where(output_df['code']==1, 'Temperature','Conditions')
-    print(output_df)  
+    print(output_df)
 if __name__ == '__main__':
      main()
